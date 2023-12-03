@@ -1,0 +1,51 @@
+definitions:
+  model.Stock:
+    properties:
+      lastUpdate:
+        type: string
+      stockId:
+        type: integer
+      stockName:
+        type: string
+      stockPrice:
+        type: integer
+    type: object
+info:
+  contact: {}
+paths:
+  /api:
+    get:
+      consumes:
+      - application/json
+      description: create new stock
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Stock'
+            type: array
+      summary: create Stock api
+    post:
+      consumes:
+      - application/json
+      description: update price of a stock
+      parameters:
+      - description: name search by q
+        format: email
+        in: query
+        name: q
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Stock'
+            type: array
+      summary: update Stock api
+swagger: "2.0"

@@ -1,0 +1,30 @@
+{
+  "prefix": "api",
+  "database": "PG",
+  "endPoint": "stocks",
+  "methods": [
+    {
+      "type": "GET",
+      "handler": "GetStocks"
+    },
+    {
+      "type": "GET",
+      "handler": "GetStockByID",
+      "params": ":id"
+    },
+    {
+      "type": "POST",
+      "handler": "CreateStock"
+    },
+    {
+      "type": "PATCH",
+      "handler": "UpdatePriceStock",
+      "params": ":id"
+    },
+    {
+      "type": "DELETE",
+      "handler": "DeleteStock",
+      "params": ":id"
+    }
+  ]
+}

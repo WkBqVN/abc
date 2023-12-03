@@ -1,0 +1,92 @@
+{
+  "data": [
+    {
+      "api": "GetStocksApi",
+      "handler": "GetStocks",
+      "method": "GET",
+      "params": "",
+      "url": "/api/stocks",
+      "cases":
+      [
+        {
+          "body": null,
+          "query": "limit=2&page=1",
+          "title":"(GET ALL)case 1 limit=2 and page=1",
+          "response": "[{\"stockId\":3,\"stockName\":\"stock_3             \",\"stockPrice\":333,\"lastUpdate\":\"0001-01-01T00:00:00Z\"},{\"stockId\":4,\"stockName\":\"stock_4             \",\"stockPrice\":444,\"lastUpdate\":\"0001-01-01T00:00:00Z\"}]",
+          "status": 200
+        },
+        {
+          "body": null,
+          "query": "limit=1&page=2",
+          "title":"(GET ALL)case 2 limit=1 and page = 0",
+          "response":"[{\"stockId\":3,\"stockName\":\"stock_3             \",\"stockPrice\":333,\"lastUpdate\":\"0001-01-01T00:00:00Z\"}]",
+          "status": 200
+        },
+        {
+          "body": null,
+          "query": "",
+          "title":"(GET ALL)case 3 no limit and page",
+          "response":"[]",
+          "status": 200
+        },
+        {
+          "body": null,
+          "query": "limit=1&page=10",
+          "title":"(GET ALL)case 4 over limit or page",
+          "response":"[]",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "api": "GetStockByIDApi",
+      "handler": "GetStockByID",
+      "method": "GET",
+      "params": ":id",
+      "url": "/api/stocks",
+      "cases":
+      [
+        {
+          "body": null,
+          "query": "1",
+          "title":"(GET ONE)case 1 stock id is normal and int type",
+          "response":"{\"stockId\":1,\"stockName\":\"stock_1             \",\"stockPrice\":111,\"lastUpdate\":\"0001-01-01T00:00:00Z\"}",
+          "status": 200
+        },
+        {
+          "body": null,
+          "query": "a",
+          "title":"(GET ONE)case 2 stock id is a character",
+          "response":"{\"message\":\"ID is not correct\"}",
+          "status": 400
+        },
+        {
+          "body": null,
+          "query": "",
+          "title":"(GET ONE) case 3 no id",
+          "response":"[]",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "api": "UpdatePriceStockById",
+      "handler": "UpdatePriceStock",
+      "method": "PATCH",
+      "params": ":id",
+      "url": "/api/stocks",
+      "cases":
+      [
+        {
+          "body": {
+            "stockPrice": 111
+          },
+          "query": "1",
+          "title":"(PATCH) case 1 id is normal and int type",
+          "response":"",
+          "status": 200
+        }
+      ]
+    }
+  ]
+}
